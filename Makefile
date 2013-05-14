@@ -1,5 +1,5 @@
 
-build: components index.js file-picker.css
+build: components index.js
 	@component build --dev
 
 components: component.json

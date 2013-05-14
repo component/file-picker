@@ -4,7 +4,6 @@
  */
 
 var o = require('jquery');
-var trigger = require('trigger-event');
 
 /**
  * Expose `filePicker`.
@@ -29,7 +28,12 @@ function FilePicker(fn){
   }).appendTo(o('body'));
 
   // open dialog
-  input.trigger('click');
+  if (window.opera) {
+    // opera hack
+    setTimeout(function(){ input.trigger('click'); }, 0);
+  } else {
+    input.trigger('click');
+  }
 
   // listen change event
   input.on('change', function(e){

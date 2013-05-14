@@ -5,8 +5,7 @@
   "version": "0.0.1",
   "keywords": [],
   "dependencies": {
-    "component/jquery": "*",
-    "adamsanderson/trigger-event" : "0.0.2"
+    "component/jquery": "*"
   },
   "development": {},
   "scripts": [
