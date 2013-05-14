@@ -24,7 +24,6 @@ function FilePicker(fn){
   var input = o('<input>', {
     'type': 'file',
     'class': 'file-picker',
-    'style': 'display: none;',
     'multiple': 'multiple'
   }).appendTo(o('body'));
 
