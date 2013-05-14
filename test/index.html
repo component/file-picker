@@ -6,11 +6,12 @@
   </head>
   <body>
     <h2>File picker</h2>
-    <p>Upload a <a onclick="upload();" href="#">file</a></p>
+    <p>Upload a single <a onclick="upload();" href="#">file</a></p>
+    <p>Upload multiple <a onclick="upload({ multiple: true });" href="#">files</a></p>
     <script src="../build/build.js"></script>
     <script>
-      function upload() {
-        require('file-picker/index.js')(function(ev){
+      function upload(opts) {
+        require('file-picker/index.js')(opts, function(ev){
           console.log(ev);
         });
       }
