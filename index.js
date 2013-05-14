@@ -39,14 +39,20 @@ function FilePicker(opts, fn){
   // open dialog
   if (window.opera) {
     // opera hack
-    setTimeout(function(){ input.trigger('click'); }, 0);
+    setTimeout(open, 0);
   } else {
+    open();
+  }
+
+  /**
+   * Open file input dialog
+   */
+
+  function open(){
     input.trigger('click');
+    input.remove();
   }
 
   // listen change event
-  input.on('change', function(e){
-    fn(e.files, e);
-    input.remove();
-  });
+  input.on('change', fn);
 }
