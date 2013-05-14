@@ -1,0 +1,17 @@
+{
+  "name": "file-picker",
+  "repo": "component/file-picker",
+  "description": "File picker component",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "component/jquery": "*"
+  },
+  "development": {},
+  "scripts": [
+    "index.js"
+  ],
+  "styles": [
+    "file-picker.css"
+  ]
+}
