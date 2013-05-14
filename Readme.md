@@ -1,4 +1,3 @@
-
 # file-picker
 
   File picker component
@@ -23,11 +22,11 @@ $('multiple-link').click(function() {
 
 ## Cross-browser support
 
-* - Internet Explorer >= 6
-  - FireFox
-  - Chrome
-  - Opera
-  - Safari
+ - Internet Explorer >= 6
+ - FireFox
+ - Chrome
+ - Opera
+ - Safari
 
 ## License
 
