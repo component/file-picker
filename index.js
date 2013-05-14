@@ -18,14 +18,20 @@ exports = module.exports = FilePicker;
  * @api public
  */
 
-function FilePicker(fn){
+function FilePicker(opts, fn){
+  if ('function' == typeof opts) {
+    fn = opts; opts = {};
+  }
 
   // inject input element
   var input = o('<input>', {
     'type': 'file',
-    'class': 'file-picker',
-    'multiple': 'multiple'
+    'class': 'file-picker'
   }).appendTo(o('body'));
+
+  if (opts.multiple) {
+    input.attr('multiple', 'multiple');
+  }
 
   // open dialog
   if (window.opera) {
