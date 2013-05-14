@@ -10,8 +10,5 @@
   "development": {},
   "scripts": [
     "index.js"
-  ],
-  "styles": [
-    "file-picker.css"
   ]
 }
