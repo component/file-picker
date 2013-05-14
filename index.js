@@ -23,13 +23,13 @@ function FilePicker(opts, fn){
     fn = opts;
     opts = {};
   }
-
   opts = opts || {};
 
   // inject input element
   var input = o('<input>', {
     'type': 'file',
-    'class': 'file-picker'
+    'class': 'file-picker',
+    'style': 'display: block; position: absolute; top: -100px'
   }).appendTo(o('body'));
 
   if (opts.multiple) {
@@ -46,6 +46,7 @@ function FilePicker(opts, fn){
 
   /**
    * Open file input dialog
+   * @api private
    */
 
   function open(){
