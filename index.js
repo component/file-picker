@@ -20,8 +20,11 @@ exports = module.exports = FilePicker;
 
 function FilePicker(opts, fn){
   if ('function' == typeof opts) {
-    fn = opts; opts = {};
+    fn = opts;
+    opts = {};
   }
+
+  opts = opts || {};
 
   // inject input element
   var input = o('<input>', {
