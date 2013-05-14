@@ -3,14 +3,9 @@
   "repo": "component/file-picker",
   "description": "File picker component",
   "author": "Damian Suarez <rdsuarez@gmail.com>",
-  "twitter": "@retrofox",
   "version": "0.0.1",
-  "keywords": ["file", "file-picker", "picker", "component"],
-  "dependencies": {
-    "component/dom": "*",
-    "adamsanderson/trigger-event": "*",
-    "component/emitter": "1.0.0"
-  },
+  "keywords": [],
+  "dependencies": {},
   "development": {},
   "scripts": [
     "index.js"

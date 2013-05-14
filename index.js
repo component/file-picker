@@ -1,12 +1,5 @@
 
 /**
- * Module dependencies
- */
-
-var dom = require('dom');
-var domtrigger = require('trigger-event');
-
-/**
  * Expose `filePicker`.
  */
 
@@ -27,15 +20,16 @@ function FilePicker(opts, fn){
   opts = opts || {};
 
   // inject input element
-  var input = dom('<input>')
-  .attr('type', 'file')
-  .css({ display: 'none', position: 'absolute', top: -100 })
-  .addClass('file-picker')
-  .appendTo('body');
+  var input = document.createElement('input');
+  input.style.top = -100;
+  input.style.position = 'absolute';
+  input.setAttribute('type', 'file');
 
   if (opts.multiple) {
-    input.attr('multiple', 'multiple');
+    input.setAttribute('multiple', 'multiple');
   }
+
+  document.body.appendChild(input);
 
   // open dialog
   if (window.opera) {
@@ -51,10 +45,10 @@ function FilePicker(opts, fn){
    */
 
   function open(){
-    domtrigger(input.els[0], 'click');
+    input.click();
     input.remove();
   }
 
   // listen change event
-  input.on('change', fn);
+  input.addEventListener('change', fn);
 }
