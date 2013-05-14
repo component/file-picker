@@ -11,9 +11,9 @@
 
 ```js
 $('my-link').click(function() {
-  require('file-picker')(function(ev){ // ... });
+  require('file-picker')(function(ev){ ... });
 
-  require('file-picker')({ multiple: true }, function(ev){ // ... });
+  require('file-picker')({ multiple: true }, function(ev){ ... });
 });
 ```
 
