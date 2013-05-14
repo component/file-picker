@@ -1,0 +1,17 @@
+
+{
+  "name": "file-picker-component",
+  "version": "0.0.1",
+  "description": "File picker component",
+  "author": "Damian Suarez <rdsuarez@gmail.com>",
+  "twitter": "@retrofox",
+  "keywords": ["file", "file-picker", "picker", "component"],
+  "dependencies": {},
+  "devDependencies": {},
+  "main": "index",
+  "component": {
+    "scripts": {
+      "file-picker": "index.js"
+    }
+  }
+}
