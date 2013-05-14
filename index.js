@@ -4,6 +4,7 @@
  */
 
 var o = require('jquery');
+var trigger = require('trigger-event');
 
 /**
  * Expose `filePicker`.
