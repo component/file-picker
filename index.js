@@ -3,7 +3,8 @@
  * Module dependencies
  */
 
-var o = require('jquery');
+var dom = require('dom');
+var domtrigger = require('trigger-event');
 
 /**
  * Expose `filePicker`.
@@ -26,11 +27,11 @@ function FilePicker(opts, fn){
   opts = opts || {};
 
   // inject input element
-  var input = o('<input>', {
-    'type': 'file',
-    'class': 'file-picker',
-    'style': 'display: block; position: absolute; top: -100px'
-  }).appendTo(o('body'));
+  var input = dom('<input>')
+  .attr('type', 'file')
+  .css({ display: 'none', position: 'absolute', top: -100 })
+  .addClass('file-picker')
+  .appendTo('body');
 
   if (opts.multiple) {
     input.attr('multiple', 'multiple');
@@ -50,7 +51,7 @@ function FilePicker(opts, fn){
    */
 
   function open(){
-    input.trigger('click');
+    domtrigger(input.els[0], 'click');
     input.remove();
   }
 

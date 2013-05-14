@@ -7,7 +7,9 @@
   "version": "0.0.1",
   "keywords": ["file", "file-picker", "picker", "component"],
   "dependencies": {
-    "component/jquery": "*"
+    "component/dom": "*",
+    "adamsanderson/trigger-event": "*",
+    "component/emitter": "1.0.0"
   },
   "development": {},
   "scripts": [
