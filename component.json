@@ -2,8 +2,10 @@
   "name": "file-picker",
   "repo": "component/file-picker",
   "description": "File picker component",
+  "author": "Damian Suarez <rdsuarez@gmail.com>",
+  "twitter": "@retrofox",
   "version": "0.0.1",
-  "keywords": [],
+  "keywords": ["file", "file-picker", "picker", "component"],
   "dependencies": {
     "component/jquery": "*"
   },
