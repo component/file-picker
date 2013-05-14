@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>FilePicker component</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="../build/build.css" />
+  </head>
+  <body>
+    <h2>File picker</h2>
+    <p>Upload a <a onclick="upload();" href="#">file</a></p>
+    <script src="../build/build.js"></script>
+    <script>
+      function upload() {
+        require('file-picker/index.js')(function(files, ev){
+          console.log(files);
+          console.log(ev);
+        });
+      }
+    </script>
+  </body>
+</html>
