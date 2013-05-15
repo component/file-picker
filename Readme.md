@@ -1,4 +1,4 @@
-# file-picker
+# File Picker
 
   File picker component
 
