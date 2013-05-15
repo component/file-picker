@@ -12,12 +12,12 @@
 ```js
 // Upload a single file
 $('single-link').click(function() {
-  require('file-picker')(function(ev){ ... });
+  require('file-picker')(function(files){});
 });
 
 // Upload multiple files
 $('multiple-link').click(function() {
-  require('file-picker')({ multiple: true }, function(ev){ ... });
+  require('file-picker')({ multiple: true }, function(files){});
 });
 ```
 
@@ -31,7 +31,11 @@ $('multiple-link').click(function() {
     if the UA supports it (defaults to `false`).
 
   The callback `fn` will only be invoked if the underlying `<input>`
-  fires a `change` event. It will receive the `event` object.
+  fires a `change` event. It will receive the following parameters:
+
+  - The `files` array from the `<input>`.
+  - The change `event` object.
+  - The underlying `<input>` element reference (detached from DOM).
 
 ## Browser support
 
