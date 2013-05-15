@@ -1,18 +1,19 @@
 
 /**
- * Expose `filePicker`.
+ * Module exports.
  */
 
-exports = module.exports = FilePicker;
+module.exports = filePicker;
 
 /**
- * filePicker
+ * Opens a file picker dialog.
  *
+ * @param {Object} options (optional)
  * @param {Function} fn callback function
  * @api public
  */
 
-function FilePicker(opts, fn){
+function filePicker(opts, fn){
   if ('function' == typeof opts) {
     fn = opts;
     opts = {};
@@ -21,14 +22,17 @@ function FilePicker(opts, fn){
 
   // inject input element
   var input = document.createElement('input');
+  input.type = 'file';
   input.style.top = -100;
   input.style.position = 'absolute';
-  input.setAttribute('type', 'file');
 
-  if (opts.multiple) {
-    input.setAttribute('multiple', 'multiple');
-  }
+  // multiple files support
+  if (opts.multiple) input.multiple = true;
 
+  // listen change event
+  input.addEventListener('change', fn);
+
+  // inject
   document.body.appendChild(input);
 
   // open dialog
@@ -39,16 +43,14 @@ function FilePicker(opts, fn){
     open();
   }
 
-  /**
-   * Open file input dialog
-   * @api private
-   */
-
+  // open
   function open(){
     input.click();
-    input.parentNode.removeChild(input);
-  }
 
-  // listen change event
-  input.addEventListener('change', fn);
+    // this will be deferred after the blocking
+    // file dialog is closed
+    setTimeout(function(){
+      input.parentNode.removeChild(input);
+    }, 200);
+  }
 }
