@@ -30,7 +30,9 @@ function filePicker(opts, fn){
   if (opts.multiple) input.multiple = true;
 
   // listen change event
-  input.addEventListener('change', fn);
+  input.addEventListener('change', function(ev){
+    fn(input.files, ev, input);
+  });
 
   // inject
   document.body.appendChild(input);
