@@ -6,6 +6,12 @@
 module.exports = filePicker;
 
 /**
+ * Reference to last `<input>` used.
+ */
+
+var last;
+
+/**
  * Opens a file picker dialog.
  *
  * @param {Object} options (optional)
@@ -14,6 +20,10 @@ module.exports = filePicker;
  */
 
 function filePicker(opts, fn){
+  if (last && last.parentNode) {
+    last.parentNode.removeChild(last);
+  }
+
   if ('function' == typeof opts) {
     fn = opts;
     opts = {};
@@ -25,6 +35,7 @@ function filePicker(opts, fn){
   input.type = 'file';
   input.style.top = '-100px';
   input.style.position = 'absolute';
+  last = input;
 
   // multiple files support
   if (opts.multiple) input.multiple = true;
@@ -48,11 +59,5 @@ function filePicker(opts, fn){
   // open
   function open(){
     input.click();
-
-    // this will be deferred after the blocking
-    // file dialog is closed
-    setTimeout(function(){
-      input.parentNode.removeChild(input);
-    }, 200);
   }
 }
