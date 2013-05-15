@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+  <head>
+    <title>File picker demo</title>
+    <style>
+      body {
+        padding: 100px;
+        font: 13px Helvetica;
+      }
+
+      #log {
+        font: 11px Monaco, Courier new;
+        border: 1px solid #999;
+        background: #eee;
+        padding: 3px 14px;
+        height: 200px;
+        overflow-y: auto;
+      }
+
+      button {
+        font-size: 100%;
+        width: 180px;
+        padding: 8px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>File picker demo</h1>
+    <p>
+      <button id="b1">File picker (normal)</button>
+      <button id="b2">File picker (multiple)</button>
+    </p>
+
+    <h2>Log</h2>
+    <div id="log"></div>
+
+    <script src="build/build.js"></script>
+    <script>
+      var picker = require('file-picker');
+
+      function log(t){
+        var p = document.createElement('p');
+        p.appendChild(document.createTextNode(new Date + ': ' + t));
+        var logger = document.getElementById('log');
+        logger.appendChild(p);
+        logger.scrollTop = 10000000;
+      }
+
+      document.getElementById('b1').onclick = function(){
+        picker(function(files, ev){
+          log('Selected ' + files[0].name);
+        });
+      }
+
+      document.getElementById('b2').onclick = function(){
+        picker({ multiple: true }, function(files, ev){
+          for (var i = 0; i < files.length; i++) {
+            log('Selected ' + files[i].name);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
