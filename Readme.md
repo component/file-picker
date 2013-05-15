@@ -3,6 +3,9 @@
   Opens a file picker dialog upon being called. Doesn't need a DOM
   element or pre-existing `<input type="file">`.
 
+  __Note:__ The file picker function _MUST_ be invoked from a user-generated DOM
+  event. The most common example is a `"click"` event.
+
 ## Installation
 
     $ component install component/file-picker
@@ -10,14 +13,16 @@
 ## Usage
 
 ```js
+var filePicker = require('file-picker');
+
 // Upload a single file
 $('single-link').click(function() {
-  require('file-picker')(function(files){});
+  filePicker(function(files){});
 });
 
 // Upload multiple files
 $('multiple-link').click(function() {
-  require('file-picker')({ multiple: true }, function(files){});
+  filePicker({ multiple: true }, function(files){});
 });
 ```
 
