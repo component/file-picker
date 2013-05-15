@@ -33,13 +33,13 @@ $('multiple-link').click(function() {
   The callback `fn` will only be invoked if the underlying `<input>`
   fires a `change` event. It will receive the following parameters:
 
-  - The `files` array from the `<input>`.
+  - The `files` array from the `<input>` (not available on IE9).
   - The change `event` object.
   - The underlying `<input>` element reference (detached from DOM).
 
 ## Browser support
 
- - Internet Explorer 6+
+ - Internet Explorer 9+
  - Firefox
  - Chrome
  - Opera
