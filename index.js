@@ -46,7 +46,7 @@ function FilePicker(opts, fn){
 
   function open(){
     input.click();
-    input.remove();
+    input.parentNode.removeChild(input);
   }
 
   // listen change event
