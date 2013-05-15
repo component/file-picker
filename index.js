@@ -23,7 +23,7 @@ function filePicker(opts, fn){
   // inject input element
   var input = document.createElement('input');
   input.type = 'file';
-  input.style.top = -100;
+  input.style.top = '-100px';
   input.style.position = 'absolute';
 
   // multiple files support
