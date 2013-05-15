@@ -1,12 +1,13 @@
 # File Picker
 
-  File picker component
+  Opens a file picker dialog upon being called. Doesn't need a DOM
+  element or pre-existing `<input type="file">`.
 
 ## Installation
 
     $ component install component/file-picker
 
-## API
+## Usage
 
 ```js
 // Upload a single file
@@ -20,13 +21,26 @@ $('multiple-link').click(function() {
 });
 ```
 
-## Cross-browser support
+## API
 
- - Internet Explorer >= 6
- - FireFox
+### filePicker(opts, fn)
+
+  Valid options:
+
+  - `multiple` (Boolean) whether the user can select multiple files
+    if the UA supports it (defaults to `false`).
+
+  The callback `fn` will only be invoked if the underlying `<input>`
+  fires a `change` event. It will receive the `event` object.
+
+## Browser support
+
+ - Internet Explorer 6+
+ - Firefox
  - Chrome
  - Opera
  - Safari
+ - Mobile Safari
 
 ## License
 
