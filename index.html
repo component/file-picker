@@ -1,1 +1,19 @@
-My Page
+<html>
+  <head>
+    <title>FilePicker component</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+  <body>
+    <h2>File picker</h2>
+    <p>Upload a single <a onclick="upload();" href="#">file</a></p>
+    <p>Upload multiple <a onclick="upload({ multiple: true });" href="#">files</a></p>
+    <script src="build/build.js"></script>
+    <script>
+      function upload(opts) {
+        require('file-picker/index.js')(opts, function(ev){
+          alert('uploaded');
+        });
+      }
+    </script>
+  </body>
+</html>
