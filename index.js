@@ -39,6 +39,7 @@ function filePicker(opts, fn){
 
   // multiple files support
   if (opts.multiple) input.multiple = true;
+  if (opts.directory) input.webkitdirectory = input.mozdirectory = input.directory = true;
 
   // listen change event
   input.addEventListener('change', function(ev){
