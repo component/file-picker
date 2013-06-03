@@ -20,9 +20,14 @@ $('single-link').click(function() {
   filePicker(function(files){});
 });
 
-// Upload multiple files
+// Upload multiple files (on supported web browsers)
 $('multiple-link').click(function() {
   filePicker({ multiple: true }, function(files){});
+});
+
+// Upload a directory (on supported web browsers)
+$('directory-link').click(function() {
+  filePicker({ directory: true }, function(files){});
 });
 ```
 
@@ -33,6 +38,8 @@ $('multiple-link').click(function() {
   Valid options:
 
   - `multiple` (Boolean) whether the user can select multiple files
+    if the UA supports it (defaults to `false`).
+  - `directory` (Boolean) whether the user can select a directory
     if the UA supports it (defaults to `false`).
 
   The callback `fn` will only be invoked if the underlying `<input>`
