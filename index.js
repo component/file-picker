@@ -49,16 +49,16 @@ function filePicker(opts, fn){
   // inject
   document.body.appendChild(input);
 
-  // open dialog
-  if (window.opera) {
-    // opera hack
-    setTimeout(open, 0);
-  } else {
-    open();
-  }
+  setTimeout(open, 0);
 
   // open
   function open(){
-    input.click();
+    input.dispatchEvent(click());
   }
+}
+
+function click() {
+  var evt = document.createEvent('MouseEvents');
+  evt.initEvent( 'click', true, true );
+  return evt;
 }
