@@ -12,6 +12,12 @@ module.exports = filePicker;
 var last;
 
 /**
+ * firefox feature detection
+ */
+
+var firefox = (window.mozInnerScreenX !== undefined);
+
+/**
  * Opens a file picker dialog.
  *
  * @param {Object} options (optional)
@@ -49,7 +55,11 @@ function filePicker(opts, fn){
   // inject
   document.body.appendChild(input);
 
-  setTimeout(open, 0);
+  if (firefox) {
+    input.click();
+  } else {
+    setTimeout(open, 0);
+  }
 
   // open
   function open(){
