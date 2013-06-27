@@ -16,7 +16,7 @@ var picker = FilePicker();
 
 link.onclick = function() {
   picker.choose(function(files) {
-
+    // ...
   });
 }
 
@@ -24,7 +24,9 @@ link.onclick = function() {
 
 picker.multiple()
 link.onclick = function() {
-  picker.choose(function
+  picker.choose(function(files) {
+    // ...
+  });
 }
 ```
 
