@@ -5,9 +5,13 @@
   "author": "Damian Suarez <rdsuarez@gmail.com>",
   "version": "0.0.4",
   "keywords": [],
-  "dependencies": {},
+  "dependencies": {
+    "component/domify": "1.0.0",
+    "component/event": "0.1.0"
+  },
   "development": {},
   "scripts": [
-    "index.js"
+    "index.js",
+    "template.js"
   ]
 }
