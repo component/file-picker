@@ -11,11 +11,10 @@
     <script src="../build/build.js"></script>
     <script>
       var Picker = require('file-picker');
-      picker = Picker();
 
       var singlePicker = Picker();
       single.onclick = function() {
-        picker.choose(function(files) {
+        singlePicker.choose(function(files) {
           console.log(files[0]);
         })
       };
