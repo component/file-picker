@@ -53,7 +53,7 @@ Picker.prototype.multiple = function(multiple) {
 
 Picker.prototype.directory = function(directory) {
   directory = (directory === undefined) ? true : directory;
-  input.webkitdirectory = input.mozdirectory = input.directory = directory;
+  this.input.webkitdirectory = this.input.mozdirectory = this.input.directory = directory;
   return this;
 };
 
