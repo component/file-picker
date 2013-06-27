@@ -36,7 +36,7 @@ Initialize a `FilePicker` instance. Defaults to a single file upload.
 
 ### picker#multiple(multiple)
 
-Allow multiple files to be upload (on supported browsers). Defaults to `false`.
+Upload multiple files (on supported browsers). Defaults to `false`.
 
 ```js
 picker.multiple()
@@ -45,7 +45,7 @@ picker.choose(fn)
 
 ### picker#directory(directory)
 
-Allow an entire directory to be uploaded (on supported browsers). Defaults to `false`
+Upload an entire directory (on supported browsers). Defaults to `false`
 
 ```js
 picker.directory()
