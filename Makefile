@@ -1,6 +1,9 @@
 
-build: components index.js
+build: components index.js template.js
 	@component build --dev
+
+template.js: template.html
+	@component convert $<
 
 components: component.json
 	@component install --dev
