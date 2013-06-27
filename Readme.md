@@ -62,6 +62,10 @@ picker.choose(function(files, e) {
 })
 ```
 
+### picker#destroy()
+
+Remove the picker from the DOM and unbind any events
+
 ## Browser support
 
  - Internet Explorer 9+
