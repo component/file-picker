@@ -1,7 +1,10 @@
-# file-picker
+# File Picker
 
   Opens a file picker dialog upon being called. Doesn't need a DOM
   element or pre-existing `<input type="file">`.
+
+  __Note:__ The file picker function _MUST_ be invoked from a user-generated DOM
+  event. The most common example is a `"click"` event.
 
 ## Installation
 
@@ -10,63 +13,41 @@
 ## Usage
 
 ```js
-var picker = FilePicker();
+var filePicker = require('file-picker');
 
-// single file upload on click
+// Upload a single file
+$('single-link').click(function() {
+  filePicker(function(files){});
+});
 
-link.onclick = function() {
-  picker.choose(function(files) {
-    // ...
-  });
-}
+// Upload multiple files (on supported web browsers)
+$('multiple-link').click(function() {
+  filePicker({ multiple: true }, function(files){});
+});
 
-// upload multiple files (on supported web browsers)
-
-picker.multiple()
-link.onclick = function() {
-  picker.choose(function(files) {
-    // ...
-  });
-}
+// Upload a directory (on supported web browsers)
+$('directory-link').click(function() {
+  filePicker({ directory: true }, function(files){});
+});
 ```
 
 ## API
 
-### FilePicker()
+### filePicker(opts, fn)
 
-Initialize a `FilePicker` instance. Defaults to a single file upload.
+  Valid options:
 
-### picker#multiple(multiple)
+  - `multiple` (Boolean) whether the user can select multiple files
+    if the UA supports it (defaults to `false`).
+  - `directory` (Boolean) whether the user can select a directory
+    if the UA supports it (defaults to `false`).
 
-Upload multiple files (on supported browsers). Defaults to `false`.
+  The callback `fn` will only be invoked if the underlying `<input>`
+  fires a `change` event. It will receive the following parameters:
 
-```js
-picker.multiple()
-picker.choose(fn)
-```
-
-### picker#directory(directory)
-
-Upload an entire directory (on supported browsers). Defaults to `false`
-
-```js
-picker.directory()
-picker.choose(fn)
-```
-
-### picker#choose(fn)
-
-Open the file dialog. Call `fn` upon file selection. If the user cancels the dialog without uploading a file, `fn` is not called.
-
-```js
-picker.choose(function(files, e) {
-  // ...
-})
-```
-
-### picker#destroy()
-
-Remove the picker from the DOM and unbind any events
+  - The `files` array from the `<input>` (not available on IE9).
+  - The change `event` object.
+  - The underlying `<input>` element reference (detached from DOM).
 
 ## Browser support
 
@@ -76,7 +57,7 @@ Remove the picker from the DOM and unbind any events
  - Opera
  - Safari
  - Mobile Safari
- - Chrome (Android)
+ - Android Browser
 
 ## License
 
