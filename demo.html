@@ -36,9 +36,7 @@
 
     <script src="build/build.js"></script>
     <script>
-      var Picker = require('file-picker');
-      var singlePicker = Picker();
-      var multiplePicker = Picker().multiple();
+      var picker = require('file-picker');
 
       function log(t){
         var p = document.createElement('p');
@@ -49,13 +47,13 @@
       }
 
       document.getElementById('b1').onclick = function(){
-        singlePicker.choose(function(files, ev){
+        picker(function(files, ev){
           log('Selected ' + files[0].name);
         });
       }
 
       document.getElementById('b2').onclick = function(){
-        multiplePicker.choose(function(files, ev){
+        picker({ multiple: true }, function(files, ev){
           for (var i = 0; i < files.length; i++) {
             log('Selected ' + files[i].name);
           }

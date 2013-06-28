@@ -5,34 +5,16 @@
   </head>
   <body>
     <h2>File picker</h2>
-    <p>Upload a single <a id="single" href="#">file</a></p>
-    <p>Upload multiple <a id="multiple" href="#">files</a></p>
-    <p>Upload a <a id="directory" href="#">directory</a></p>
+    <p>Upload a single <a onclick="upload();" href="#">file</a></p>
+    <p>Upload multiple <a onclick="upload({ multiple: true });" href="#">files</a></p>
+    <p>Upload a <a onclick="upload({ directory: true });" href="#">directory</a></p>
     <script src="../build/build.js"></script>
     <script>
-      var Picker = require('file-picker');
-
-      var singlePicker = Picker();
-      single.onclick = function() {
-        singlePicker.choose(function(files) {
-          console.log(files[0]);
-        })
-      };
-
-      var multiplePicker = Picker().multiple();
-      multiple.onclick = function() {
-        multiplePicker.choose(function(files) {
-          console.log(files);
+      function upload(opts) {
+        require('file-picker/index.js')(opts, function(ev){
+          alert('uploaded');
         });
       }
-
-      var directoryPicker = Picker().directory();
-      directory.onclick = function() {
-        directoryPicker.choose(function(files) {
-          console.log(files);
-        })
-      }
-
     </script>
   </body>
 </html>

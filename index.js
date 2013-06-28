@@ -1,109 +1,74 @@
+
 /**
- * Module Dependencies
+ * Module exports.
  */
 
-var domify = require('domify');
-var event = require('event');
-var form = domify(require('./template'));
-
- /**
-  * Expose `Picker`
-  */
-
-module.exports = Picker;
+module.exports = filePicker;
 
 /**
- * Initialize `Picker`
+ * Reference to last `<input>` used.
+ */
+
+var last;
+
+/**
+ * firefox feature detection
+ */
+
+var firefox = (window.mozInnerScreenX !== undefined);
+
+/**
+ * Opens a file picker dialog.
  *
- * @return {Picker}
+ * @param {Object} options (optional)
+ * @param {Function} fn callback function
  * @api public
  */
 
-function Picker() {
-  if (!(this instanceof Picker)) return new Picker;
-  this.fn = function() {};
-  this.form = form.cloneNode(true);
-  this.input = this.form.children[0];
-  document.body.appendChild(this.form);
-  this.change = this.onchange.bind(this);
-  event.bind(this.input, 'change', this.change);
+function filePicker(opts, fn){
+  if (last && last.parentNode) {
+    last.parentNode.removeChild(last);
+  }
+
+  if ('function' == typeof opts) {
+    fn = opts;
+    opts = {};
+  }
+  opts = opts || {};
+
+  // inject input element
+  var input = document.createElement('input');
+  input.type = 'file';
+  input.style.top = '-100px';
+  input.style.position = 'absolute';
+  last = input;
+
+  // multiple files support
+  if (opts.multiple) input.multiple = true;
+  if (opts.directory) input.webkitdirectory = input.mozdirectory = input.directory = true;
+
+  // listen change event
+  input.addEventListener('change', function(ev){
+    fn(input.files, ev, input);
+  });
+
+  // inject
+  document.body.appendChild(input);
+
+  if (firefox) {
+    input.click();
+  } else {
+    setTimeout(open, 0);
+  }
+
+  // open
+  function open(){
+    input.dispatchEvent(click());
+  }
 }
 
-/**
- * Allow multiple files to be selected
- *
- * @param {Boolean} multiple
- * @return {Picker}
- * @api public
- */
-
-Picker.prototype.multiple = function(multiple) {
-  multiple = (multiple === undefined) ? true : multiple;
-  this.input.multiple = multiple;
-  return this;
-};
-
-/**
- * Directory
- *
- * @param {Boolean} directory
- * @return {Picker}
- * @api public
- */
-
-Picker.prototype.directory = function(directory) {
-  directory = (directory === undefined) ? true : directory;
-  this.input.webkitdirectory = this.input.mozdirectory = this.input.directory = directory;
-  return this;
-};
-
-/**
- * Choose
- *
- * @param {Function} fn
- * @return {Picker}
- * @api public
- */
-
-Picker.prototype.choose = function(fn) {
-  var self = this;
-  this.form.reset();
-  this.fn = fn;
-  this.input.click();
-};
-
-/**
- * Handle on change events
- *
- * @param {Event} e
- * @return {Picker}
- * @api private
- */
-
-Picker.prototype.onchange = function(e) {
-  this.fn(this.input.files, e);
-  this.form.reset();
-  return this;
-};
-
-/**
- * Remove the input[file] element
- */
-
-Picker.prototype.remove = function() {
-  document.body.removeChild(this.input);
-  return this;
-};
-
-/**
- * Destroy the picker
- *
- * @return {Picker}
- * @api public
- */
-
-Picker.prototype.destroy = function() {
-  event.unbind(this.input, 'change', this.change);
-  this.remove();
-  return this;
-};
+function click() {
+  var evt = document.createEvent('MouseEvents');
+  evt.initEvent( 'click', true, true );
+  return evt;
+}
