@@ -30,8 +30,8 @@ function filePicker(opts, fn){
   opts = opts || {};
 
   // multiple files support
-  if (opts.multiple) input.multiple = true;
-  if (opts.directory) input.webkitdirectory = input.mozdirectory = input.directory = true;
+  input.multiple = !!opts.multiple;
+  input.webkitdirectory = input.mozdirectory = input.directory = !!opts.directory;
 
   // listen change event
   input.addEventListener('change', function onchange(ev){

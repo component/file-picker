@@ -57,6 +57,7 @@ $('directory-link').click(function() {
  - Opera
  - Safari
  - Mobile Safari
+ - Android Browser
 
 ## License
 
