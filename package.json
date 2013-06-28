@@ -6,16 +6,12 @@
   "author": "Damian Suarez <rdsuarez@gmail.com>",
   "twitter": "@retrofox",
   "keywords": ["file", "file-picker", "picker", "component"],
-  "dependencies": {
-    "domify": "1.0.0",
-    "event-component": "0.1.0"
-  },
+  "dependencies": {},
   "devDependencies": {},
   "main": "index",
   "component": {
     "scripts": {
-      "file-picker": "index.js",
-      "template": "template.js"
+      "file-picker": "index.js"
     }
   }
 }
