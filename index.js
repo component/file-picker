@@ -20,6 +20,12 @@ document.body.appendChild(form);
 var input = form.children[0];
 
 /**
+ * Already bound
+ */
+
+var bound = false;
+
+/**
  * Opens a file picker dialog.
  *
  * @param {Object} options (optional)
@@ -38,12 +44,18 @@ function FilePicker(opts, fn){
   input.multiple = !!opts.multiple;
   input.webkitdirectory = input.mozdirectory = input.directory = !!opts.directory;
 
-  // listen change event
-  event.bind(input, 'change', function onchange(ev){
-    fn(input.files, ev, input);
-    form.reset();
-    event.unbind(input, 'change', onchange);
-  });
+  // listen to change event (only if not already listening)
+  if (!bound) {
+    bound = true;
+    event.bind(input, 'change', function onchange(ev){
+      fn(input.files, ev, input);
+      event.unbind(input, 'change', onchange);
+      bound = false;
+    });
+  }
+
+  // reset the form
+  form.reset();
 
   // trigger input dialog
   input.click();
