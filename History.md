@@ -1,4 +1,11 @@
 
+0.1.0 / 2013-06-28
+==================
+
+  * update options each time
+  * insert DOM element on require
+  * use outer form to reset <input type=file>
+
 0.0.4 / 2013-06-25
 ==================
 
