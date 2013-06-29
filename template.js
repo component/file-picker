@@ -1,1 +1,0 @@
-module.exports = '<form style="position: absolute; top: -1000px; left: -1000px">\n  <input type="file">\n</form>\n';

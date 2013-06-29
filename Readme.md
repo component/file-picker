@@ -3,8 +3,7 @@
   Opens a file picker dialog upon being called. Doesn't need a DOM
   element or pre-existing `<input type="file">`.
 
-  __Note:__ The file picker function _MUST_ be invoked from a user-generated DOM
-  event. The most common example is a `"click"` event.
+  __Note:__ This component inserts the element on require, so the body element needs to be loaded beforehand.
 
 ## Installation
 
