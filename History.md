@@ -1,4 +1,9 @@
 
+0.1.1 / 2013-06-28
+==================
+
+  * do not trigger multiple change events if you cancel out of upload, then re-upload
+
 0.1.0 / 2013-06-28
 ==================
 
