@@ -1,9 +1,14 @@
-
 /**
- * Module exports.
+ * Module Dependencies
  */
 
-module.exports = filePicker;
+var event = require('event');
+
+/**
+ * Expose `FilePicker`
+ */
+
+module.exports = FilePicker;
 
 /**
  * Input template
@@ -22,7 +27,7 @@ var input = form.children[0];
  * @api public
  */
 
-function filePicker(opts, fn){
+function FilePicker(opts, fn){
   if ('function' == typeof opts) {
     fn = opts;
     opts = {};
@@ -34,10 +39,10 @@ function filePicker(opts, fn){
   input.webkitdirectory = input.mozdirectory = input.directory = !!opts.directory;
 
   // listen change event
-  input.addEventListener('change', function onchange(ev){
+  event.bind(input, 'change', function onchange(ev){
     fn(input.files, ev, input);
     form.reset();
-    input.removeEventListener('change', onchange);
+    event.unbind(input, 'change', onchange);
   });
 
   // trigger input dialog
