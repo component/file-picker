@@ -1,19 +1,73 @@
+<!doctype html>
 <html>
   <head>
-    <title>FilePicker component</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>File picker demo</title>
+    <style>
+      body {
+        padding: 100px;
+        font: 13px Helvetica;
+      }
+
+      #log {
+        font: 11px Monaco, Courier new;
+        border: 1px solid #999;
+        background: #eee;
+        padding: 3px 14px;
+        height: 200px;
+        overflow-y: auto;
+      }
+
+      button {
+        font-size: 100%;
+        width: 180px;
+        padding: 8px 0;
+      }
+    </style>
   </head>
   <body>
-    <h2>File picker</h2>
-    <p>Upload a single <a onclick="upload();" href="#">file</a></p>
-    <p>Upload multiple <a onclick="upload({ multiple: true });" href="#">files</a></p>
-    <script src="build/build.js"></script>
+    <h1>File picker demo</h1>
+    <p>
+      <button id="b1">File picker (normal)</button>
+      <button id="b2">File picker (multiple)</button>
+      <button id="b3">File picker (directory)</button>
+    </p>
+
+    <h2>Log</h2>
+    <div id="log"></div>
+
+    <script src="../build/build.js"></script>
     <script>
-      function upload(opts) {
-        require('file-picker/index.js')(opts, function(ev){
-          alert('uploaded');
-        });
+      var picker = require('file-picker');
+
+      function log(t){
+        var p = document.createElement('p');
+        p.appendChild(document.createTextNode(new Date + ': ' + t));
+        var logger = document.getElementById('log');
+        logger.appendChild(p);
+        logger.scrollTop = 10000000;
       }
+
+      document.getElementById('b1').onclick = function(){
+        picker(function(files, ev){
+          log('Selected ' + files[0].name);
+        });
+      };
+
+      document.getElementById('b2').onclick = function(){
+        picker({ multiple: true }, function(files, ev){
+          for (var i = 0; i < files.length; i++) {
+            log('Selected ' + files[i].name);
+          }
+        });
+      };
+
+      document.getElementById('b3').onclick = function(){
+        picker({ directory: true }, function(files, ev){
+          for (var i = 0; i < files.length; i++) {
+            log('Selected ' + files[i].name);
+          }
+        });
+      };
     </script>
   </body>
 </html>

@@ -199,70 +199,12 @@ require.relative = function(parent) {
 
   return localRequire;
 };
-require.register("file-picker/index.js", function(exports, require, module){
-
-/**
- * Module exports.
- */
-
-module.exports = filePicker;
-
-/**
- * Reference to last `<input>` used.
- */
-
-var last;
-
-/**
- * Opens a file picker dialog.
- *
- * @param {Object} options (optional)
- * @param {Function} fn callback function
- * @api public
- */
-
-function filePicker(opts, fn){
-  if (last && last.parentNode) {
-    last.parentNode.removeChild(last);
-  }
-
-  if ('function' == typeof opts) {
-    fn = opts;
-    opts = {};
-  }
-  opts = opts || {};
-
-  // inject input element
-  var input = document.createElement('input');
-  input.type = 'file';
-  input.style.top = '-100px';
-  input.style.position = 'absolute';
-  last = input;
-
-  // multiple files support
-  if (opts.multiple) input.multiple = true;
-
-  // listen change event
-  input.addEventListener('change', function(ev){
-    fn(input.files, ev, input);
-  });
-
-  // inject
-  document.body.appendChild(input);
-
-  // open dialog
-  if (window.opera) {
-    // opera hack
-    setTimeout(open, 0);
-  } else {
-    open();
-  }
-
-  // open
-  function open(){
-    input.click();
-  }
-}
-
-});
+require.register("component-event/index.js", Function("exports, require, module",
+"\n/**\n * Bind `el` event `type` to `fn`.\n *\n * @param {Element} el\n * @param {String} type\n * @param {Function} fn\n * @param {Boolean} capture\n * @return {Function}\n * @api public\n */\n\nexports.bind = function(el, type, fn, capture){\n  if (el.addEventListener) {\n    el.addEventListener(type, fn, capture);\n  } else {\n    el.attachEvent('on' + type, fn);\n  }\n  return fn;\n};\n\n/**\n * Unbind `el` event `type`'s callback `fn`.\n *\n * @param {Element} el\n * @param {String} type\n * @param {Function} fn\n * @param {Boolean} capture\n * @return {Function}\n * @api public\n */\n\nexports.unbind = function(el, type, fn, capture){\n  if (el.removeEventListener) {\n    el.removeEventListener(type, fn, capture);\n  } else {\n    el.detachEvent('on' + type, fn);\n  }\n  return fn;\n};\n//@ sourceURL=component-event/index.js"
+));
+require.register("file-picker/index.js", Function("exports, require, module",
+"/**\n * Module Dependencies\n */\n\nvar event = require('event');\n\n/**\n * Expose `FilePicker`\n */\n\nmodule.exports = FilePicker;\n\n/**\n * Input template\n */\n\nvar form = document.createElement('form');\nform.innerHTML = '<input type=\"file\" style=\"top: -1000px; position: absolute\">';\ndocument.body.appendChild(form);\nvar input = form.children[0];\n\n/**\n * Already bound\n */\n\nvar bound = false;\n\n/**\n * Opens a file picker dialog.\n *\n * @param {Object} options (optional)\n * @param {Function} fn callback function\n * @api public\n */\n\nfunction FilePicker(opts, fn){\n  if ('function' == typeof opts) {\n    fn = opts;\n    opts = {};\n  }\n  opts = opts || {};\n\n  // multiple files support\n  input.multiple = !!opts.multiple;\n  input.webkitdirectory = input.mozdirectory = input.directory = !!opts.directory;\n\n  // listen to change event (only if not already listening)\n  if (!bound) {\n    bound = true;\n    event.bind(input, 'change', function onchange(ev){\n      fn(input.files, ev, input);\n      event.unbind(input, 'change', onchange);\n      bound = false;\n    });\n  }\n\n  // reset the form\n  form.reset();\n\n  // trigger input dialog\n  input.click();\n}\n//@ sourceURL=file-picker/index.js"
+));
+require.alias("component-event/index.js", "file-picker/deps/event/index.js");
+require.alias("component-event/index.js", "event/index.js");
 
