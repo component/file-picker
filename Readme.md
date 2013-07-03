@@ -28,6 +28,11 @@ $('multiple-link').click(function() {
 $('directory-link').click(function() {
   filePicker({ directory: true }, function(files){});
 });
+
+// Accept only image files
+$('image-link').click(function() {
+  filePicker({ accept: 'image/*' }, function(files){});
+});
 ```
 
 ## API
@@ -40,6 +45,8 @@ $('directory-link').click(function() {
     if the UA supports it (defaults to `false`).
   - `directory` (Boolean) whether the user can select a directory
     if the UA supports it (defaults to `false`).
+  - `accept` (String) tell the browser to only allow selecting files
+    of this type. If several types, separate with comma. [Some examples](http://stackoverflow.com/questions/181214/file-input-accept-attribute-is-it-useful/10503561#10503561).
 
   The callback `fn` will only be invoked if the underlying `<input>`
   fires a `change` event. It will receive the following parameters:
