@@ -29,6 +29,7 @@
       <button id="b1">File picker (single)</button>
       <button id="b2">File picker (multiple)</button>
       <button id="b3">File picker (directory)</button>
+      <button id="b4">File picker (multiple, only '.png' files)</button>
     </p>
 
     <h2>Log</h2>
@@ -62,6 +63,14 @@
 
       document.getElementById('b3').onclick = function(){
         picker({ directory: true }, function(files, ev){
+          for (var i = 0; i < files.length; i++) {
+            log('Selected ' + files[i].name);
+          }
+        });
+      };
+
+      document.getElementById('b4').onclick = function(){
+        picker({ multiple: true, accept: [ '.png' ] }, function(files, ev){
           for (var i = 0; i < files.length; i++) {
             log('Selected ' + files[i].name);
           }
