@@ -42,6 +42,8 @@ function FilePicker(opts, fn){
 
   // multiple files support
   input.multiple = !!opts.multiple;
+
+  // directory support
   input.webkitdirectory = input.mozdirectory = input.directory = !!opts.directory;
   // tell browser to only accept files of a certain type
   input.accept = opts.accept;
