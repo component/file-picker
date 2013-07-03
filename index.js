@@ -42,9 +42,20 @@ function FilePicker(opts, fn){
 
   // multiple files support
   input.multiple = !!opts.multiple;
+
+  // directory support
   input.webkitdirectory = input.mozdirectory = input.directory = !!opts.directory;
-  // tell browser to only accept files of a certain type
-  input.accept = opts.accept;
+
+  // accepted file types support
+  if (null == opts.accept) {
+    delete input.accept;
+  } else if (opts.accept.join) {
+    // got an array
+    input.accept = opts.accept.join(',');
+  } else if (opts.accept) {
+    // got a regular string
+    input.accept = opts.accept;
+  }
 
   // listen to change event (only if not already listening)
   if (!bound) {
