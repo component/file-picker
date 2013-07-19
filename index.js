@@ -17,7 +17,7 @@ module.exports = FilePicker;
 var form = document.createElement('form');
 form.innerHTML = '<input type="file" style="top: -1000px; position: absolute">';
 document.body.appendChild(form);
-var input = form.children[0];
+var input = form.childNodes[0];
 
 /**
  * Already bound
@@ -42,7 +42,20 @@ function FilePicker(opts, fn){
 
   // multiple files support
   input.multiple = !!opts.multiple;
+
+  // directory support
   input.webkitdirectory = input.mozdirectory = input.directory = !!opts.directory;
+
+  // accepted file types support
+  if (null == opts.accept) {
+    delete input.accept;
+  } else if (opts.accept.join) {
+    // got an array
+    input.accept = opts.accept.join(',');
+  } else if (opts.accept) {
+    // got a regular string
+    input.accept = opts.accept;
+  }
 
   // listen to change event (unbind old one if already listening)
   if (bound) event.unbind(input, 'change', bound);
