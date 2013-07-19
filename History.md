@@ -1,4 +1,10 @@
 
+0.2.0 / 2013-07-19
+==================
+
+ * fixed onchange referencing previous callback
+ * Add `accept` option support
+
 0.1.1 / 2013-06-28
 ==================
 
