@@ -5,7 +5,7 @@
 
   __Note:__ This component inserts the element when required, so the body element needs to be loaded beforehand.
   
-  __Note:__ file-picker must be triggered by an original DOM event (`click`, `touchstart`, `keyup`, etc.). It cannot be called `onload` or in a timeout.
+  __Note:__ For security reasons, `file-picker` must be triggered by an original DOM event (`click`, `touchstart`, `keyup`, etc.). It cannot be called `onload` or in a timeout.
 
 ## Installation
 
