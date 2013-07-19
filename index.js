@@ -44,14 +44,15 @@ function FilePicker(opts, fn){
   input.multiple = !!opts.multiple;
   input.webkitdirectory = input.mozdirectory = input.directory = !!opts.directory;
 
-  // listen to change event (only if not already listening)
-  if (!bound) {
-    bound = true;
-    event.bind(input, 'change', function onchange(ev){
-      fn(input.files, ev, input);
-      event.unbind(input, 'change', onchange);
-      bound = false;
-    });
+  // listen to change event (unbind old one if already listening)
+  if (bound) event.unbind(input, 'change', bound);
+  event.bind(input, 'change', onchange);
+  bound = onchange;
+
+  function onchange(e) {
+    fn(input.files, e, input);
+    event.unbind(input, 'change', onchange);
+    bound = false;
   }
 
   // reset the form

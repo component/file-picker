@@ -8,7 +8,9 @@
   "dependencies": {
     "component/event": "0.1.0"
   },
-  "development": {},
+  "development": {
+    "component/object-url": "*"
+  },
   "scripts": [
     "index.js"
   ]

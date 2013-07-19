@@ -1,0 +1,65 @@
+<html>
+<head>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"> -->
+  <title>Two pickers</title>
+  <style>
+    img {
+      width: 100%;
+    }
+
+    #out1, #out2 {
+      margin: 10px;
+      float: left;
+      width: 400px;
+      height: 500px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="upload1">Upload 1</button>
+  <button id="upload2">Upload 2</button>
+  <br/>
+  <div id="out1"></div>
+  <div id="out2"></div>
+
+  <script src="../build/build.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    var filepicker = require('file-picker');
+    var objectUrl = require('object-url');
+
+    upload1.onclick = function() {
+      filepicker(function(file) {
+        file = file[0];
+        var url = objectUrl.create(file);
+        image(out1, url);
+      });
+    };
+
+    upload2.onclick = function() {
+      filepicker(function(file) {
+        file = file[0];
+        var url = objectUrl.create(file);
+        image(out2, url);
+      });
+    };
+
+    function image(el, url) {
+      var img = new Image();
+
+      img.onload = function() {
+        el.innerHTML = '';
+        el.appendChild(img);
+      }
+
+      img.onerror = function() {
+        alert('error loading image');
+      }
+
+      img.src = url;
+    }
+
+  </script>
+</body>
+</html>
