@@ -15,7 +15,7 @@ module.exports = FilePicker;
  */
 
 var form = document.createElement('form');
-form.innerHTML = '<input type="file" style="top: -1000px; position: absolute">';
+form.innerHTML = '<input type="file" style="top: -1000px; position: absolute" aria-hidden="true">';
 document.body.appendChild(form);
 var input = form.childNodes[0];
 
