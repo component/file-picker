@@ -1,24 +1,30 @@
 {
-  "name": "file-picker-component",
+  "name": "component-file-picker",
   "version": "0.2.0",
   "description": "File picker component",
   "author": "Damian Suarez <rdsuarez@gmail.com>",
-  "twitter": "@retrofox",
+  "contributors": [
+    "Nathan Rajlich <nathan@tootallnate.net>"
+  ],
   "keywords": [
+    "browser",
     "file",
     "file-picker",
     "picker",
     "component"
   ],
   "dependencies": {
-    "event-component": "0.1.0"
+    "component-event": "0.1.4"
   },
   "devDependencies": {},
-  "main": "index",
+  "main": "index.js",
   "component": {
     "scripts": {
       "file-picker": "index.js"
     }
+  },
+  "browser": {
+    "event": "component-event"
   },
   "repository": {
     "type": "git",
