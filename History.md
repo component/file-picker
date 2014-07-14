@@ -1,4 +1,11 @@
 
+0.2.1 / 2014-07-14
+==================
+
+ * hide file input from screen readers (#15)
+ * package: fix package.json for browserify usage
+ * package: add "repository" field to package.json (#14)
+
 0.2.0 / 2013-07-19
 ==================
 

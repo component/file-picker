@@ -3,10 +3,10 @@
   "repo": "component/file-picker",
   "description": "File picker component",
   "author": "Damian Suarez <rdsuarez@gmail.com>",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "keywords": [],
   "dependencies": {
-    "component/event": "0.1.0"
+    "component/event": "0.1.4"
   },
   "development": {
     "component/object-url": "*"
